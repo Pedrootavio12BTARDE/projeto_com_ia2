@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Produtos do Pedro Otávio</title>
+</head>
+<body>
+    <h1>Lista de Produtos</h1>
+    <a href="cadastro.html">Cadastrar Novo Produto</a>
+    <hr>
+    
+    <ul id="lista-produtos">
+        </ul>
+
+    <script>
+        async function carregarProdutos() {
+            const resposta = await fetch('http://localhost:3000/produtos')
+            const produtos = await resposta.json()
+            const lista = document.getElementById('lista-produtos')
+            
+            lista.innerHTML = ''
+            produtos.forEach(produto => {
+                const item = document.createElement('li')
+                item.textContent = `${produto.nome} - R$ ${produto.preco} (${produto.descricao})`
+                lista.appendChild(item)
+            })
+        }
+
+        carregarProdutos()
+    </script>
+</body>
+</html>
