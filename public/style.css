@@ -1,0 +1,124 @@
+/* Importando uma fonte moderna do Google */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  /* Cores baseadas na sua paleta */
+  --cor-1-branco: #ffffff;
+  --cor-2-escuro: #164f45;
+  --cor-3-claro: #53b886;
+  --cor-4-medio: #3a9388;
+  --cor-5-musgo: #2a7a55;
+  --bg-fundo: #f0f4f3;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-fundo);
+  color: var(--cor-2-escuro);
+  margin: 0;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Estilos gerais */
+h1 { color: var(--cor-2-escuro); margin-top: 0; }
+
+/* Estilos da Lista de Produtos */
+.container { width: 100%; max-width: 800px; }
+.cabecalho { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+
+.btn-novo {
+  background-color: var(--cor-4-medio);
+  color: var(--cor-1-branco);
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.btn-novo:hover { background-color: var(--cor-3-claro); }
+
+ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 15px; }
+
+.card {
+  background-color: var(--cor-1-branco);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border-left: 6px solid var(--cor-3-claro);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s;
+}
+.card:hover { transform: translateY(-3px); }
+.card-info h3 { margin: 0 0 5px 0; color: var(--cor-2-escuro); }
+.card-info p { margin: 0; color: #666; font-size: 14px; }
+.card-preco { font-weight: 700; color: var(--cor-5-musgo); font-size: 18px; margin-top: 8px; }
+
+.btn-apagar {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.btn-apagar:hover { background-color: #cc0000; }
+
+/* Estilos do Formulário de Cadastro */
+.form-container {
+  background-color: var(--cor-1-branco);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+}
+.form-container h1 { text-align: center; margin-bottom: 25px; }
+
+.link-voltar {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: var(--cor-4-medio);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+.link-voltar:hover { color: var(--cor-3-claro); }
+
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  transition: 0.3s;
+}
+input:focus, textarea:focus {
+  border-color: var(--cor-3-claro);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(83, 184, 134, 0.2);
+}
+
+.btn-salvar {
+  width: 100%;
+  padding: 14px;
+  background-color: var(--cor-5-musgo);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.btn-salvar:hover { background-color: var(--cor-2-escuro); }

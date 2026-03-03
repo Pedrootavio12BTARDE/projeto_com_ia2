@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Produtos de Pedro Otávio</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="cabecalho">
+      <h1>Meus Produtos</h1>
+      <a href="/cadastrar" class="btn-novo">+ Novo Produto</a>
+    </div>
+    <ul id="lista"></ul>
+  </div>
+  
+  <script>
+    async function carregar() {
+      const res = await fetch('/api/produtos')
+      const produtos = await res.json()
+      const lista = document.getElementById('lista')
+      
+      lista.innerHTML = ''
+      
+      produtos.forEach(p => {
+        const li = document.createElement('li')
+        li.className = 'card'
+        
+        const infoDiv = document.createElement('div')
+        infoDiv.className = 'card-info'
+        infoDiv.innerHTML = `
+          <h3>${p.nome}</h3>
+          <p>${p.descricao}</p>
+          <div class="card-preco">R$ ${p.preco}</div>
+        `
+        
+        const btnApagar = document.createElement('button')
+        btnApagar.textContent = 'Apagar'
+        btnApagar.className = 'btn-apagar'
+        btnApagar.onclick = () => apagarProduto(p.id)
+        
+        li.appendChild(infoDiv)
+        li.appendChild(btnApagar)
+        lista.appendChild(li)
+      })
+    }
+
+    async function apagarProduto(id) {
+      const confirmacao = confirm('Tem certeza que deseja apagar este produto?')
+      if (confirmacao) {
+        const resposta = await fetch('/api/produtos/' + id, { method: 'DELETE' })
+        if (resposta.ok) {
+          carregar() 
+        } else {
+          alert('Erro ao apagar. Tente novamente.')
+        }
+      }
+    }
+
+    carregar()
+  </script>
+</body>
+</html>

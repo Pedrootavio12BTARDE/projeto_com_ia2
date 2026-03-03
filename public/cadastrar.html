@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastrar Produto</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="form-container">
+    <a href="/produtos" class="link-voltar">&larr; Voltar para a Lista</a>
+    <h1>Novo Produto</h1>
+    <form id="form">
+      <input type="text" id="nome" placeholder="Nome do produto" required>
+      <input type="number" id="preco" placeholder="Preço (R$)" step="0.01" required>
+      <textarea id="descricao" placeholder="Descrição detalhada..." rows="4"></textarea>
+      <button type="submit" class="btn-salvar">Salvar Produto</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('form').addEventListener('submit', async (e) => {
+      e.preventDefault()
+      const nome = document.getElementById('nome').value
+      const preco = document.getElementById('preco').value
+      const descricao = document.getElementById('descricao').value
+
+      const resposta = await fetch('/api/produtos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, preco, descricao })
+      })
+
+      if (resposta.ok) {
+        window.location.href = '/produtos'
+      } else {
+        alert('Erro ao cadastrar. Verifique o console.')
+      }
+    })
+  </script>
+</body>
+</html>
